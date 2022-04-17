@@ -1,0 +1,23 @@
+services:
+  mock-server:
+    image: wiremock/wiremock:2.33.1
+    command: --verbose
+    ports:
+      - "8081:8080"
+    volumes:
+      - ./mock-server:/home/wiremock
+
+  pricelist-server:
+    build: ..
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:h2:tcp://db-server/pricelist-db
+      - SPRING_JPA_SHOW-SQL=true
+  db-server:
+    image: buildo/h2database
+    ports:
+      - "8082:8082"
+    volumes:
+      - ./sql/pricelist-db.sql:/docker-entrypoint-initdb.d/pricelist-db.sql
+    

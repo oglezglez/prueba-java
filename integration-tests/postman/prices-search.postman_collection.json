@@ -1,0 +1,327 @@
+{
+	"info": {
+		"_postman_id": "fcd94074-8391-4338-be38-33822fcadbfa",
+		"name": "Pricelist Search Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Returns pricelist by date of a brand & product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Brand id is correct\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData[\"brand-id\"]).to.not.be.undefined;",
+							"    pm.expect(jsonData[\"brand-id\"]).to.be.oneOf([pm.iterationData.get(\"brand-id\"), pm.variables.get(\"brand-id\")]);",
+							"});",
+							"",
+							"pm.test(\"Product id is correct\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData[\"product-id\"]).to.not.be.undefined;",
+							"    pm.expect(jsonData[\"product-id\"]).to.be.oneOf([pm.iterationData.get(\"product-id\"), pm.variables.get(\"product-id\")]);",
+							"});",
+							"",
+							"pm.test(\"Pricelist is correct\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData[\"price-list\"]).to.not.be.undefined;",
+							"    pm.expect(jsonData[\"price-list\"]).to.be.oneOf([pm.iterationData.get(\"price-list\"), pm.variables.get(\"price-list\")]);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/brands/:brand-id/products/:product-id/pricelist?date={{date}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"brands",
+						":brand-id",
+						"products",
+						":product-id",
+						"pricelist"
+					],
+					"query": [
+						{
+							"key": "date",
+							"value": "{{date}}"
+						}
+					],
+					"variable": [
+						{
+							"key": "brand-id",
+							"value": "{{brand-id}}",
+							"description": "(Required) "
+						},
+						{
+							"key": "product-id",
+							"value": "{{product-id}}",
+							"description": "(Required) "
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Details about a price",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/brands/:brand-id/products/:product-id/pricelist?date=1996-01-31T20:15:56.024Z",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"brands",
+								":brand-id",
+								"products",
+								":product-id",
+								"pricelist"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "1996-01-31T20:15:56.024Z"
+								}
+							],
+							"variable": [
+								{
+									"key": "brand-id",
+									"value": "ut anim",
+									"description": "(Required) "
+								},
+								{
+									"key": "product-id",
+									"value": "ut anim",
+									"description": "(Required) "
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"brand-id\": \"ullamco minim laboris exercitation\",\n  \"product-id\": \"eu\",\n  \"price-list\": \"cillum ut minim\",\n  \"start-date\": \"1971-11-30T21:21:14.448Z\",\n  \"end-date\": \"1976-10-26T09:33:48.117Z\",\n  \"price\": 77708866.85059205\n}"
+				},
+				{
+					"name": "Bad Request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/brands/:brand-id/products/:product-id/pricelist?date=1996-01-31T20:15:56.024Z",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"brands",
+								":brand-id",
+								"products",
+								":product-id",
+								"pricelist"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "1996-01-31T20:15:56.024Z"
+								}
+							],
+							"variable": [
+								{
+									"key": "brand-id",
+									"value": "ut anim",
+									"description": "(Required) "
+								},
+								{
+									"key": "product-id",
+									"value": "ut anim",
+									"description": "(Required) "
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"code\": -92951886,\n  \"message\": \"enim veniam dolore sint tempor\"\n}"
+				},
+				{
+					"name": "Not Found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/brands/:brand-id/products/:product-id/pricelist?date=1996-01-31T20:15:56.024Z",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"brands",
+								":brand-id",
+								"products",
+								":product-id",
+								"pricelist"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "1996-01-31T20:15:56.024Z"
+								}
+							],
+							"variable": [
+								{
+									"key": "brand-id",
+									"value": "ut anim",
+									"description": "(Required) "
+								},
+								{
+									"key": "product-id",
+									"value": "ut anim",
+									"description": "(Required) "
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"code\": -92951886,\n  \"message\": \"enim veniam dolore sint tempor\"\n}"
+				},
+				{
+					"name": "Server error",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/brands/:brand-id/products/:product-id/pricelist?date=1996-01-31T20:15:56.024Z",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"brands",
+								":brand-id",
+								"products",
+								":product-id",
+								"pricelist"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "1996-01-31T20:15:56.024Z"
+								}
+							],
+							"variable": [
+								{
+									"key": "brand-id",
+									"value": "ut anim",
+									"description": "(Required) "
+								},
+								{
+									"key": "product-id",
+									"value": "ut anim",
+									"description": "(Required) "
+								}
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"code\": -92951886,\n  \"message\": \"enim veniam dolore sint tempor\"\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "localhost:3000",
+			"type": "string"
+		},
+		{
+			"key": "product-id",
+			"value": "35455"
+		},
+		{
+			"key": "brand-id",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "date",
+			"value": "2020-06-16T21:00:00%2B02:00"
+		},
+		{
+			"key": "price-list",
+			"value": "4",
+			"type": "string"
+		}
+	]
+}

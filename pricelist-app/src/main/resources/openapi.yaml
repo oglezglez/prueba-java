@@ -1,0 +1,90 @@
+openapi: 3.0.2
+info:
+  version: 'v1'
+  title: 'pricelist-search'
+servers:
+  - url: 'localhost:8080'
+paths:
+  /brands/{brand-id}/products/{product-id}/pricelist:
+    get:
+      summary: 'Returns pricelist by date of a brand & product'
+      operationId: pricelistByDate
+      tags:
+        - brands
+      parameters:
+        - name: brand-id
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: product-id
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: date
+          required: false
+          in: query
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: 'Details about a pricelist'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pricelist'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Pricelist:
+      type: object
+      required:
+        - id
+        - name
+      properties:
+        brand-id:
+          type: string
+        product-id:
+          type: string
+        price-list:
+          type: string
+        start-date:
+          type: string
+          format: date-time
+        end-date:
+          type: string
+          format: date-time
+        price:
+          type: number          
+        currency:
+          type: string          
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string

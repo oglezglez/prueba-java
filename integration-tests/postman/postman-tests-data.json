@@ -1,0 +1,32 @@
+[
+    {
+        "brand-id": "1",
+        "product-id": "35455",
+        "date": "2020-06-14T10:00:00Z",
+        "price-list": "1"
+    },
+    {
+        "brand-id": "1",
+        "product-id": "35455",
+        "date": "2020-06-14T16:00:00Z",
+        "price-list": "2"
+    },
+    {
+        "brand-id": "1",
+        "product-id": "35455",
+        "date": "2020-06-14T21:00:00Z",
+        "price-list": "1"
+    },
+    {
+        "brand-id": "1",
+        "product-id": "35455",
+        "date": "2020-06-15T10:00:00Z",
+        "price-list": "3"
+    },
+    {
+        "brand-id": "1",
+        "product-id": "35455",
+        "date": "2020-06-16T21:00:00Z",
+        "price-list": "4"
+    }
+]

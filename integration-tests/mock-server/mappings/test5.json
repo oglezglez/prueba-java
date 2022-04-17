@@ -1,0 +1,21 @@
+{
+    "request": {
+        "method": "GET",
+        "url": "/brands/1/products/35455/pricelist?date=2020-06-16T21:00:00Z"
+    },
+    "response": {
+        "status": 200,
+        "jsonBody": {
+            "brand-id": "1",
+            "product-id": "35455",
+            "price-list": "4",
+            "start-date": "2020-06-15T16:00:00Z",
+            "end-date": "2020-12-31T23:59:59Z",
+            "price": 38.95,
+            "currency": "EUR"
+          },
+        "headers": {
+            "Content-Type": "application/json"
+        }
+    }
+}
