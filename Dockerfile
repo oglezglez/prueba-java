@@ -6,7 +6,6 @@ COPY pricelist-persistence pricelist-persistence
 COPY pricelist-app pricelist-app
 COPY pom.xml .
 
-RUN 
 RUN mvn clean package -ntp
 
 FROM eclipse-temurin:17-jre-centos7
